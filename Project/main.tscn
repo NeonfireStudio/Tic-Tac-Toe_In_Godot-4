@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgtbpgksycu1a"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0ni5y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocfh0"]
+bg_color = Color(0.458824, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_go4it"]
+
+[sub_resource type="Environment" id="Environment_4d651"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 3.5
+glow_levels/2 = 3.5
+glow_levels/4 = 1.0
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
+glow_bloom = 0.05
+glow_blend_mode = 1
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ni5y")
+play_with = "AI"
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Cells" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_ocfh0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ocfh0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ocfh0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_go4it")
+text = "Restart"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4d651")
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
